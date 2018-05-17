@@ -4,6 +4,8 @@
  <title>Click game</title>
  <link rel = "stylesheet" href = "index.css">
  <meta charset="utt-8" />
+ <script src="/socket.io/socket.io.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
  
  </head>
 <body>
@@ -23,6 +25,30 @@
 <button id = "user_clicks_button" onclick = "click_bar()">Tobetsa</button>
 
 
+
+<!--- play below -->
+<div id = "team_buttons">
+<button id = "team_1" onclick = "user_team_id_apply(1)">Team1</button>
+<button id = "team_2" onclick = "user_team_id_apply(2)">Team2</button>
+</div>
+
+
+
+<script>
+
+/*sends data*/
+var x;
+var socket = io.connect();
+function communicate(x){
+socket.emit("outbox", x);
+}
+socket.on("inbox", function(data){data_decider(data)});
+
+
+
+
+</script>
+<!------ end playing above --->
 <script type="text/javascript" src = "index.js"></script>
 </body>
 </html>
